@@ -168,23 +168,22 @@ plugging in the USB cable.
 
 Setup the QMK build environment as described in the project documentation.
 
-The different LED options require different firmware settings: in the QMK
-source tree, in file keyboards/mschwingen/modelm/rules.mk, select one of
+The different LED options require different firmware settings, so you need
+to select the correct firmware to build and flash. Select one of:
 
-> KBLEDS_VARIANT = ws2812
+> make mschwingen/modelm/led_wired:default
 
-> KBLEDS_VARIANT = wired
+> make mschwingen/modelm/led_ffc:default
 
-> KBLEDS_VARIANT = ffc
+> make mschwingen/modelm/led_ws2812:default
 
-(uncomment by removing the leading "#") according to your version.
-Compile the firmware by entering
+Activate the bootloader and flash the firmware using one of:
 
-> make mschwingen/modelm:default
+> make mschwingen/modelm/led_wired:default:dfu
 
-Activate the bootloader and flash the firmware using
+> make mschwingen/modelm/led_ffc:default:dfu
 
-> make mschwingen/modelm:default:dfu
+> make mschwingen/modelm/led_ws2812:default:dfu
 
 ## Assembly
 
