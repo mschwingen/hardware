@@ -185,11 +185,11 @@ to select the correct firmware to build and flash. Select one of:
 
 Activate the bootloader and flash the firmware using one of:
 
-> make mschwingen/modelm/led_wired:default:dfu
+> make mschwingen/modelm/led_wired:default:flash
 
-> make mschwingen/modelm/led_ffc:default:dfu
+> make mschwingen/modelm/led_ffc:default:flash
 
-> make mschwingen/modelm/led_ws2812:default:dfu
+> make mschwingen/modelm/led_ws2812:default:flash
 
 ## Assembly
 
