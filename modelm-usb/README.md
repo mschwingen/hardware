@@ -111,7 +111,8 @@ bootloader and the fuses, you might as well do that before populating J2
 The status LED D1 needs to be bright, since it shines into the lightpipe
 from the side. I used a warm-white 0603 LED that is quite bright at
 0.1mA. Using a 1k resistor for R12, it draws ~2.4mA and gives a nice visible
-indication the the end of the lightpipe. Use a modern, high-efficiency LED.
+indication at the the end of the lightpipe. Use a modern, high-efficiency
+LED.
 
 LED connectors J3 and J7 are wired in parallel and can both be used,
 depending on the connector on the original PCB. Unfortunately, the pinout is
@@ -124,6 +125,11 @@ To get enough I/O ports, the 16 keyboard row signals are read using 2
 SPI block of the controller, running at 4MHz. The keyboard columns are
 driven by GPIO ports on the controller, which are only set low or high-Z, so
 no external diodes are required.
+
+(Update 2020-08-23): V2 design files added - they address all the gotchas
+listed above, and should work, but I have not built this PCB yet (and
+probably will not do so in the near future, since I have enough V1 PCBs
+left). If you decide to build V2 hardware, please tell me.
 
 ## Building
 
