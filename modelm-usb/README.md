@@ -141,13 +141,16 @@ on the side where the foil is metallized.
 
 There are three options for the indicator LEDs:
 
-- Original LED board with FFC: use 4-pin TE connector on pin 1-4
-of position J3 or J7, use 120&Omega; for R18..R20.
-![LED Board with FFC connector](images/LEDs_FFC_s.jpg)
+- Original LED board with **separate, dedicated FFC** (and an 8-pin column ribbon): use 4-pin TE connector on pin 1-4 of position J3 or J7, use 120&Omega; for R18..R20.
+  
+  ![LED Board with FFC connector](images/LEDs_FFC_s.jpg)
+
+- Original LED board with FFC **that is integrated into the 12-pin column ribbon**: you need to use V3 and use a 12-pin TE connector for J2. Do not populate J3 or J7. Use 120&Omega; for R18..R20.
 
 - Original LED board with wires. Use standard 90° pin header on pin 1-4 of
   position J3[^1], use 0&Omega; for R18..R20.
-![LED Board with wired connector](images/LEDs_Wire_s.jpg)
+  
+  ![LED Board with wired connector](images/LEDs_Wire_s.jpg)
 
 - WS2812 RGB LEDs instead of the original LED assembly. Use standard 90° pin
   header on pin 2-5 of position J3 or J7, R19 = 0Ohm or 120Ohm, connect VCC,
@@ -155,6 +158,7 @@ of position J3 or J7, use 120&Omega; for R18..R20.
   (left), followed by caps lock (middle) and scroll lock(right). If you
   mount the first LED so that the input is on the top, wiring is easier (I
   got fooled by the "DI/DO" labeling).
+
   ![WS2812 LEDs](images/LEDs_WS2812_s.jpg)
 
 ## Bootloader
