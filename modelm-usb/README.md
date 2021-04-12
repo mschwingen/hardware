@@ -131,6 +131,13 @@ listed above, and should work, but I have not built this PCB yet (and
 probably will not do so in the near future, since I have enough V1 PCBs
 left). If you decide to build V2 hardware, please tell me.
 
+(Update 2021-03-13): Thomas Buchner contributed JLCPCB Pick&Place data for
+V1, so you can order assembled PCBs!
+
+(Update 2021-04-12): Thomas Buchner contributed a V3 version which adds
+support for keyboards that use a 12-pin column ribbon (with LED & column
+signals on one common connector) - thanks!
+
 ## Building
 
 Assemble the PCB according to the BOM. Take note of the orientation of the
