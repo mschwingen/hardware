@@ -1,0 +1,76 @@
+# -*- Makefile -*-
+AVRDUDE_STK200     := avrdude -c stk200
+AVRDUDE_ISP        := avrdude -c stk500v2 -P avrdoper
+AVRDUDE_HVSP       := avrdude -c stk500hvsp -P avrdoper
+AVRDUDE_910        := avrdude -c avr910 -b 115200 -P /dev/ttyS4
+AVRDUDE_BOOTLOADER := avrdude -F -c stk500v1 -b 115200 -P /dev/ttyS7
+AVRDUDE_DRAGONISP  := avrdude -c dragon_isp -P usb
+AVRDUDE_DRAGONHVSP := avrdude -c dragon_hvsp -P usb
+AVRDUDE_USBASP     := avrdude -c usbasp -P usb
+AVRDUDE_AVRISP2    := avrdude -c avrispmkii -P usb
+AVRDUDE_ARDUINO    := avrdude -F -c arduino -b 57600 -P /dev/ttyUSB0
+
+CC           := avr-gcc
+OBJCOPY      := avr-objcopy
+OBJDUMP      := avr-objdump
+SIZE         := avr-size
+
+AVRDUDE := $(AVRDUDE_$(PROGRAM))
+BAUD    := $(BAUD_$(PROGRAM))
+MCU     := $(MCU_$(PROGRAM))
+MCU2    := $(MCU2_$(PROGRAM))
+ifeq ($(MCU2),)
+MCU2 := $(MCU)
+endif
+
+CFLAGS_OPT ?= -O2
+CFLAGS  := -g -Wall $(CFLAGS_OPT) -mmcu=$(MCU)
+CFLAGS += -DF_CPU=$(FREQ_$(PROGRAM)) -DF_BAUDRATE=$(BAUD)
+CFLAGS += $(CFLAGS_$(PROGRAM))
+
+LDFLAGS = -mmcu=$(MCU_$(PROGRAM)) $(LDFLAGS_OPT)
+LDFLAGS += $(LDFLAGS_$(PROGRAM))
+
+EXTRA_LIBS += $(EXTRA_LIBS_$(PROGRAM))
+
+
+clean::
+	rm -f *.o *.map *.elf $(PROGRAM).hex
+
+prog: $(PROGRAM).hex
+	$(AVRDUDE) -p $(MCU2) -e -U flash:w:$(PROGRAM).hex:a
+
+fuses:
+	$(AVRDUDE) -p $(MCU2)  -U hfuse:w:$(FUSE_H_$(PROGRAM)):m -U lfuse:w:$(FUSE_L_$(PROGRAM)):m -U efuse:w:$(FUSE_E_$(PROGRAM)):m
+
+dumpfuses:
+	$(AVRDUDE) -p $(MCU2)  -U hfuse:r:-:h -U lfuse:r:-:h -U efuse:r:-:h calibration:r:-:h
+
+lock:
+	$(AVRDUDE) -p $(MCU2)  -U lock:w:$(LOCK_$(PROGRAM)):m
+
+fastload: $(PROGRAM).hex
+	fastload_linux -d /dev/ttyUSB0 -b 38400 -p $(PROGRAM).hex
+
+.PHONY:	ispfuses
+
+%.hex : %.elf
+	$(OBJCOPY) -R .eeprom -O ihex $< $@
+
+%.fhex : %.elf
+# use intermediate binary file to get flat intel-hex file with all sections merged
+# as required by the loader
+	$(OBJCOPY) -R .eeprom -O binary $< tmp.bin
+	$(OBJCOPY) -I binary  -O ihex tmp.bin $@
+	-rm tmp.bin
+
+%.bin : %.elf
+	$(OBJCOPY) -R .eeprom -O binary $< $@
+
+%.elf : %.o
+	$(CC) -o $@ $(LDFLAGS) -Wl,-Map,$*.map $^ $(EXTRA_LIBS)
+	$(SIZE) $@
+#	$(OBJDUMP) -h $@
+
+tags:
+	etags *.c *.h `find /usr/avr/include -name "*.h"`
