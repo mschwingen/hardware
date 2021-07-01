@@ -21,7 +21,7 @@ These are important to get right, but difficult to test reproducible using
 ## Acknowledgements
 
 There is a I2C fault injection/testing framework for Linux, which runs on
-devices with an I2C slave:
+devices with a supported I2C slave peripheral:
 
 [https://www.kernel.org/doc/html/latest/i2c/gpio-fault-injection.html](https://www.kernel.org/doc/html/latest/i2c/gpio-fault-injection.html).
 
@@ -53,7 +53,7 @@ Board choice is dictated by supply voltage: if your I2C bus runs at 5V, you
 can use an Arduino Nano. Otherwise, it is probably best to use a board that
 can be powered from the host you are testing.
 
-I designed a small PCB with an ATmega88 that is powered from the host, so it
+I designed a small PCB ([Kicad Project](hardware/)) with an ATmega88 that is powered from the host, so it
 will run at any voltage that is supported by the MCU. Below 3.3V, the LEDs
 will probably not work.
 
@@ -63,7 +63,7 @@ oscillator will work, too (after modifying the fuse bits).
 
 ## Compiling the firmware
 
-The provided Makefile assumes a commandline environment with avr-gcc available.
+The provided [Makefile](i2c-slave/Makefile) assumes a commandline environment with avr-gcc available.
 Select one of:
 
 > make PROGRAM=i2cslave_m88
@@ -88,9 +88,9 @@ Attach the slave device to the device-under-test I2C bus, making sure to
 have pullup resistors on the bus (there are jumpers on my PCB to enable
 pullup resistors if needed).
 
-Look at the sample code in host-sample/main.c. The firmware default is to
+Look at the sample code in [host-sample/main.c](host-sample/main.c). The firmware default is to
 respond to slave addresses 0x60 .. 0x6F, with different reactions depending
-on address - see the comments in i2cslave.c for details.
+on address - see the comments in [i2cslave.c](i2c-slave/i2cslave.c) for details.
 
 You may connect a TTL UART converter to the UART port of the ATmega to read
 debug messages - every I2C transaction is printed to the UART port. During
