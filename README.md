@@ -5,3 +5,5 @@
 [IBM Model M USB interface](modelm-usb/)
 
 [I2C slave for master driver test / error injection](i2c-slave/)
+
+[R-C compensation tool](compensation/)

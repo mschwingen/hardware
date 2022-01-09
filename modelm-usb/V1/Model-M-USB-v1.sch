@@ -2023,7 +2023,7 @@ F 10 "C12676" V 3300 2700 50  0001 C CNN "LCSC"
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:USB_B J4
+L Model-M-USB-v1-rescue:USB_B-Connector J4
 U 1 1 5EC21E0A
 P 1050 3400
 F 0 "J4" H 820 3389 50  0000 R CNN
