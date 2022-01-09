@@ -13,5 +13,3 @@ The PCB with all switches open has ca. 12pF of capacitance.
 
 This is a KiCad design, however, there are PDFs and fabrication-ready gerber
 files in case you simply want to make your own.
-
-![PCB photo](ESP-Prog4_s.jpg)
