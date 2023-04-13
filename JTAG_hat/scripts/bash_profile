@@ -1,0 +1,5 @@
+hostname -I
+if [ ! -e /tmp/OnlyOneInstance ] ; then 
+  touch /tmp/OnlyOneInstance
+  exec ~/scripts/loop.sh
+fi

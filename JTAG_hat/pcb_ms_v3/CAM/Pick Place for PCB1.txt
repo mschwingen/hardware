@@ -1,0 +1,71 @@
+Altium Designer Pick and Place Locations
+U:\advwork3\DXP\JTAG_hat\pcb_ms_v3\CAM\Pick Place for PCB1.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       13.04.23
+Time:       10:49
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+Designator Comment            Layer    Footprint               Center-X(mm) Center-Y(mm) Rotation Description                                                 
+R22        100k               TopLayer 0603                    18.9000      47.5000      0        "Resistor 100k/0603"                                        
+R21        100k               TopLayer 0603                    41.7000      14.0000      0        "Resistor 100k/0603"                                        
+R20        100k               TopLayer 0603                    18.9000      53.2000      0        "Resistor 100k/0603"                                        
+D6         SS14               TopLayer DIODE_SMA               11.8000      9.2000       90       "schottky diode SMA SS14"                                   
+C1         10uF               TopLayer 0805                    23.2000      10.4000      0        "Capacitor 10uF/6.3V/0805"                                  
+R9         1k                 TopLayer 0603                    26.6750      29.5500      0        "Resistor 1k/0603"                                          
+R19        150                TopLayer 0603                    7.6000       53.2000      90       "Resistor 150R/0603"                                        
+R15        10k                TopLayer 0603                    8.3000       20.9000      180      "Resistor 10k/0603"                                         
+R14        475k               TopLayer 0603                    22.0000      13.4000      90       "Resistor 475k/0603"                                        
+R13        0                  TopLayer 0603                    11.9000      20.9000      0        "Resistor 0R/0603"                                          
+Q4         BSS138P            TopLayer SOT23B                  22.4000      16.8000      270      "NFET BSS138P"                                              
+R10        4.7k               TopLayer 0603                    34.9000      9.9000       0        "Resistor 4.7k/0603"                                        
+D2         "white 0603"       TopLayer 0603_LED                37.8000      9.9000       180      "LED white 0603"                                            
+R6         220                TopLayer 0603                    17.4625      37.2250      180      "Resistor 220R/0603"                                        
+D3         "purple 0603"      TopLayer 0603_LED                20.2625      37.2250      180      "LED purple 0603"                                           
+SW1        Button             TopLayer TA_ALPS_SKHUA           37.9750      5.0000       0        "Header, 2-Pin"                                             
+R18B       100mR              TopLayer 0805                    26.9809      13.7960      0        "Resistor 0.1R/0805"                                        
+C11        100nF              TopLayer 0603                    12.6000      30.7000      0        "C 100nF/16V/0603"                                          
+R5         2.2k               TopLayer 0603                    22.0000      20.2000      90       "Resistor 2.2k/0603"                                        
+D1         "red 0603"         TopLayer 0603_LED                32.9000      19.3000      180      "LED red 0603"                                              
+JP1        SIP2               TopLayer SIP2                    27.5700      19.3000      0        "Header, 2-Pin"                                             
+R4         10k                TopLayer 0603                    45.5000      55.8000      0        "Resistor 10k/0603"                                         
+R3         2.2k               TopLayer 0603                    43.4000      59.2000      270      "Resistor 2.2k/0603"                                        
+Q3         BSS138P            TopLayer SOT23B                  45.9000      59.1250      0        "NFET BSS138P"                                              
+D5         "TVS 5V"           TopLayer SMB-D                   23.7000      26.1250      180      "TVS Diode SMAJ5.0A"                                        
+Q2         BSS138P            TopLayer SOT23B                  18.7000      32.6000      0        "NFET BSS138P"                                              
+U7         INA219AID          TopLayer D0008A_N                28.3000      6.8000       90       "IC INA219D SO-8"                                           
+R18A       100mR              TopLayer 1206                    26.9809      13.7960      0        "Resistor 0.1R/1206"                                        
+C2         100nF              TopLayer 0603                    29.6000      11.7000      0        "C 100nF/16V/0603"                                          
+J5         SIP6               TopLayer HDR1X6                  8.3500       11.1700      270      "Header, 6-Pin"                                             
+J2         "Cortex Debug"     TopLayer CN_FTSH-105-01-XXX-DV-K 48.1359      45.6570      270      "Samtec FTSH-105-01-L-DV-K, Adafruit 4048"                  
+U6         74HC04             TopLayer TSSOP14                 13.2000      25.7000      0        "IC 74HC04 TSSOP16"                                         
+C10        100nF              TopLayer 0603                    13.8750      56.9500      180      "C 100nF/16V/0603"                                          
+C9         100nF              TopLayer 0603                    13.8750      40.1500      180      "C 100nF/16V/0603"                                          
+C8         100nF              TopLayer 0603                    13.8750      45.7500      180      "C 100nF/16V/0603"                                          
+C7         100nF              TopLayer 0603                    13.8750      51.3500      180      "C 100nF/16V/0603"                                          
+C6         100nF              TopLayer 0603                    11.0750      56.9500      0        "C 100nF/16V/0603"                                          
+C5         100nF              TopLayer 0603                    11.1750      40.1500      0        "C 100nF/16V/0603"                                          
+C4         100nF              TopLayer 0603                    11.0750      45.7500      0        "C 100nF/16V/0603"                                          
+C3         100nF              TopLayer 0603                    11.0750      51.3500      0        "C 100nF/16V/0603"                                          
+D4         "green 0603"       TopLayer 0603_LED                22.6000      59.4000      180      "LED green 0603"                                            
+R12        "RP 4k7*4 0603"    TopLayer RN-NC06-4               12.5000      33.4000      0        "Resistor array 4.7k*4 5% 0603, eg Bourns CAY16A-472J4LF"   
+U5         "MDS-G16 SIP"      TopLayer MDS_G16_B               15.3000      12.0500      270      "Marvell MDS-G16 1A DC/DC converter module"                 
+R11        10k                TopLayer 0603                    21.1000      4.5000       90       "Resistor 10k/0603"                                         
+R8         10k                TopLayer 0603                    26.6750      31.1500      0        "Resistor 10k/0603"                                         
+Q1         BSS138P            TopLayer SOT23B                  22.1000      30.3000      0        "NFET BSS138P"                                              
+R7         100                TopLayer 0805                    30.1000      26.1000      0        "Resistor 100/0805"                                         
+U4         SN74LVC2T45DCUR    TopLayer SOP50P310X100-8N        12.4750      42.9500      0        "IC SN74LVC2T45DCUR  VSSOP8"                                
+U3         SN74LVC2T45DCUR    TopLayer SOP50P310X100-8N        12.4750      54.1500      0        "IC SN74LVC2T45DCUR  VSSOP8"                                
+U2         SN74LVC2T45DCUR    TopLayer SOP50P310X100-8N        12.4750      48.5500      0        "IC SN74LVC2T45DCUR  VSSOP8"                                
+U1         SN74LVC2T45DCUR    TopLayer SOP50P310X100-8N        12.4750      37.3500      0        "IC SN74LVC2T45DCUR  VSSOP8"                                
+R2         "RP 100*4 0603"    TopLayer RN-NC06-4               18.8750      42.2500      0        "Resistor array 100R*4 5% 0603  
+eg Bourns CAY16A-101J4AS" 
+R1         "RP 100*4 0603"    TopLayer RN-NC06-4               18.8750      50.3500      0        "Resistor array 100R*4 5% 0603  
+eg Bourns CAY16A-101J4AS" 
+J4         "20-pin JTAG"      TopLayer HDR2X10                 36.5259      45.5970      270      "3M 30320-6002HB, Assmann AWHW 20G-0202-T etc."             
+J3         UART               TopLayer HDR1X4                  45.3839      15.2539      270      "Header, 4-Pin"                                             
+J1         "Raspberry Pi 3b+" TopLayer RaspberryPi_Connector   26.8650      32.0000      0        "Raspberry Pi shield Header"                                
