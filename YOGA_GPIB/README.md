@@ -226,6 +226,7 @@ The PCB has the option to connect a I2C EEPROM (U4) to provide HAT configuration
 		ssh root@raspberry again
 		modprobe gpib_bitbang
 		gpib_config
+		echo "gpib-act" >/sys/class/leds/hat_led/trigger
 
 11. Test it!
 
