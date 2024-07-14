@@ -89,9 +89,9 @@ All design files are in this repository to make your own.
 7. Activate LED/Button support and disable Bluetooth (to enable using the UART port) for Linux kernel:
 
 		sudo -i
-		echo "dtoverlay=gpio-shutdown,gpio_pin=18,debounce=5000" >>/boot/config.txt
-		echo "dtoverlay=gpio-led,gpio=17,trigger=heartbeat,label=hat_led" >>/boot/config.txt
-		echo "dtoverlay=disable-bt" >>/boot/config.txt
+		echo "dtoverlay=gpio-shutdown,gpio_pin=18,debounce=5000" >>/boot/firmware/config.txt
+		echo "dtoverlay=gpio-led,gpio=17,trigger=heartbeat,label=hat_led" >>/boot/firmware/config.txt
+		echo "dtoverlay=disable-bt" >>/boot/firmware/config.txt
 
 
 6. Update packages and install git:
