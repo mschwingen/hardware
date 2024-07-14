@@ -105,6 +105,12 @@ Reset](https://www.analog.com/media/en/technical-documentation/application-notes
 describes how the bus can become stuck with SDA pulled low by the slave, and
 what to do against it.
 
+## License
+The hardware design is licensed under the CERN-OHL-S v2 license:
+https://ohwr.org/cern_ohl_s_v2.txt
+
+The software is licensed under GNU GPL version 3.
+
 <!--  LocalWords:  ATmega GPIO Nano MCU LEDs UART baudrates Makefile avr
  -->
 <!--  LocalWords:  commandline gcc cslave prog avrdude pullup

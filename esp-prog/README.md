@@ -6,3 +6,6 @@ Since there does not seem to be a standard programming connector pinout, I decid
 There are THT and SMD versions - THT was basically used to document the wired prototype.
 
 ![PCB photo](ESP-Prog4_s.jpg)
+
+This design is licensed under the CERN-OHL-S v2 license:
+https://ohwr.org/cern_ohl_s_v2.txt

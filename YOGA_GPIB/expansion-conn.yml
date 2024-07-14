@@ -1,0 +1,51 @@
+connectors:
+  X1:
+    type: Molex KK 254 YOGA
+    subtype: female
+    pinlabels: [SCL, SDA, +5V, GND, +3.3V, GND, GPIO7, GPIO8, GND, +12V]
+  X2:
+    type: JST XH Display
+    subtype: female
+    pinlabels: [GND, VCC, SDA, SCL]
+  X3:
+    type: Molex KK 254 Motor Board
+    subtype: female
+    pinlabels: [SCL, SDA, VCC, VCC, GND, GND]
+  X4:
+    type: soldered Motor Board
+    pinlabels: [+12V, GND]
+
+cables:
+  W1:
+    gauge: 0.14 mm2
+    length: 35 cm
+    wirecount: 4
+    colors: [YE, WH, OG, BK]
+
+  W2:
+    gauge: 0.14 mm2
+    length: 35 cm
+    wirecount: 3
+    colors: [YE, WH, BK]
+
+  W3:
+    gauge: 0.25 mm2
+    length: 35 cm
+    wirecount: 2
+    colors: [RD, BK]
+
+connections:
+  -
+    - X1: [1,2,3,4]
+    - W1: [1,2,3,4]
+    - X2: [4,3,2,1]
+
+  -
+    - X1: [1,2,4]
+    - W2: [1,2,3]
+    - X3: [1,2,6]
+
+  -
+    - X1: [10,9]
+    - W3: [1,2]
+    - X4: [1,2]

@@ -1,0 +1,23 @@
+connectors:
+  X2:
+    type: D-Sub
+    subtype: female
+    pins: [1,2,3,4,5,6,7,8,9]
+    pinlabels: [DCD, RXD, TXD, DTR, GND, DSR, RTS, CTS, RI]
+  X1:
+    type: Molex KK 254
+    subtype: female
+    pinlabels: [GND, TXD, RXD, CTS, RTS]
+
+cables:
+  W1:
+    gauge: 0.25 mm2
+    length: 0.3
+    wirecount: 5
+    colors: [BK, BN, RD, OG, YE]
+
+connections:
+  -
+    - X1: [1,2,3,4,5]
+    - W1: [1,2,3,4,5]
+    - X2: [5,2,3,7,8]
