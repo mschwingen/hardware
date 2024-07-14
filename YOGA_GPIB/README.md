@@ -154,11 +154,85 @@ Connector J6 can be used to connect additional circuitry: there are 2 unused 3.3
 
 		touch ssh
 
-4. Boot the pi, and check your DHCP server to determine the IP address, then SSH into it
+4. Boot the pi, and check your DHCP server to determine the IP address, then SSH into it (as root):
 
-5. Use 'sudo raspi-config', and set options as required:
-   * system options/set password
-   * system options/set hostname
+5. Copy the software subdirectory to the raspberry. Install required packages and compile device tree overlay:
+
+		apt update && apt dist-upgrade
+		apt install device-tree-compiler i2c-tools raspi-gpio build-essential python3-smbus bison m4 subversion gpiod
+		# set I/O and boot configuration
+		raspi-config nonint do_i2c 0
+		raspi-config nonint do_spi 1
+		raspi-config nonint do_serial_hw 0
+		raspi-config nonint do_serial_cons 0
+		raspi-config nonint do_camera 1
+
+6. Compile the device tree overlay for the serial console:
+
+		cd software/rtscts
+		make
+		cp uart-rtscts.dtbo /boot/firmware/
+
+7. Set boot options to enable serial console and LED:
+
+		sed -i -e 's@display_auto_detect=1@display_auto_detect=0@' /boot/firmware/config.txt
+		echo "[all] >>/boot/firmware/config.txt
+		echo "gpio=4=op,dl" >>/boot/firmware/config.txt
+		echo "gpu_mem=16" >>/boot/firmware/config.txt
+		echo "dtoverlay=disable-bt"       >>/boot/firmware/config.txt
+		echo "dtoverlay=uart-rtscts.dtbo" >>/boot/firmware/config.txt
+		echo "dtoverlay=gpio-led,gpio=4,trigger=heartbeat,label=hat_led" >>/boot/firmware/config.txt
+
+		# display IP address on console:
+		sed -ie 's@ \\n \\l@  \\4{eth0}  \\n \\l@' /etc/issue
+
+8. Compile linux-gpib code:
+
+		cd /usr/src
+		mkdir gpib
+		cd gpib
+		git clone git://git.code.sf.net/p/linux-gpib/git linux-gpib-git
+		# copy in YOGA-patched file as long as it is not included upstream
+		cp software/gpib_bitbang.c	 /usr/src/gpib/linux-gpib-git/linux-gpib-kernel/drivers/gpib/gpio/
+		cd /usr/src/gpib/linux-gpib-code/linux-gpib-kernel/
+		make clean
+		make
+		make install
+		cd /usr/src/gpib/linux-gpib-code/linux-gpib-user/
+		make clean
+		make
+		make install
+		ldconfig
+		cd /usr/src/gpib/linux-gpib-code/linux-gpib-user/language/perl
+		perl Makefile.PL
+		make
+		make test
+		make install
+		cp software/gpib.conf /usr/local/etc/
+		<modify gpib.conf as required>
+		# gpio_base = 0 for old kernels, 512 for 6.6 and newer, see /sys/class/gpio/
+		echo "options gpib_bitbang gpio_base=512 sn7516x_used=0 pin_map=yoga debug=1" >/etc/modprobe.d/gpib.conf
+
+9. Reboot the system
+
+		reboot
+
+10. Load GPIB module
+
+		ssh root@raspberry again
+		modprobe gpib_bitbang
+		gpib_config
+
+11. Test it!
+
+		echo "*IDN?" | ibterm -d 4
+->
+
+		ibterm>HEWLETT-PACKARD,34401A,0,3-1-1
+		ibterm>
+		ibterm: Done.
+
+
 
 ## License
 

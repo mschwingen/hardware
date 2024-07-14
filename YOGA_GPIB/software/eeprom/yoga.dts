@@ -1,0 +1,35 @@
+/dts-v1/;
+/plugin/;
+
+
+/ {
+    compatible = "brcm,bcm2835";
+
+/*
+   https://www.raspberrypi.com/documentation/computers/configuration.html
+   Enable /dev/ttyAMA0 RTS and CTS signals on 40-pin GPIO header
+   CTS is available on pin 36 of J8 header (GPIO 16)
+   RTS is available on pin 11 of J8 header (GPIO 17)
+*/
+    fragment@0 {
+        target = <&uart0>;
+        __overlay__ {
+                pinctrl-names = "default";
+                pinctrl-0 = <&uart0_gpio14 &uart0_ctsrts_gpio16>;
+        };
+    };
+
+/* Status LED on GPIO4, default function is heartbeat */
+/*
+    fragment@1 {
+        target = <&leds>;
+        __overlay__ {
+            statusled: statusled {
+                label = "hat_led";
+                gpios = <&gpio 4 0>;
+                linux,default-trigger = "heartbeat";
+            };
+        };
+    };
+*/
+};
