@@ -136,6 +136,10 @@ Connector J8 can be used to connect a fan (the pinout matches the common
 
 Connector J6 can be used to connect additional circuitry: there are 2 unused 3.3V GPIO pins (GPIO7, GPIO8), plus a I2C bus that is level-shifted to 5V by Q3/Q4. If you need a 3.3V I2C bus, leave out Q3, Q4, R16, R18 and instead populate R19 and R20.
 
+### EEPROM
+
+The PCB has the option to connect a I2C EEPROM (U4) to provide HAT configuration / device tree overlay information, mainly because I wanted to experiment with this. It looks to me that this provides no real value, since additional configuration is needed anyway. I recommend to leave the EEPROM out and ignore the contents of the software/eeprom/ folder.
+
 ## Software Setup (WIP)
 
 1. Use [Rasbperry Pi Imager](https://www.raspberrypi.org/software/) to image the micro SD card with 'Raspberry Pi OS Lite'
