@@ -59,7 +59,8 @@ Doc/PCB_Back.pdf: $(PCB) Doc
 	rm Doc/tmp.pdf
 
 Doc/PCB_FrontSilk.pdf: $(PCB) Doc
-	kicad-cli pcb export pdf -o Doc/tmp.pdf --theme PdfPCB1 -l Edge.Cuts,F.Cu,F.Silkscreen $<
+	#kicad-cli pcb export pdf -o Doc/tmp.pdf --theme PdfPCB1 -l Edge.Cuts,F.Cu,F.Silkscreen $<
+	kicad-cli pcb export pdf -o Doc/tmp.pdf --theme PdfPCB1 -l Edge.Cuts,F.Silkscreen $<
 	podofocrop Doc/tmp.pdf $@
 	rm Doc/tmp.pdf
 
@@ -69,7 +70,8 @@ Doc/PCB_BackSilk.pdf: $(PCB) Doc
 	rm Doc/tmp.pdf
 
 Doc/PCB_FrontFab.pdf: $(PCB) Doc
-	kicad-cli pcb export pdf -o Doc/tmp.pdf --theme PdfPCB1 -l Edge.Cuts,F.Cu,F.Fab $<
+	#kicad-cli pcb export pdf -o Doc/tmp.pdf --theme PdfPCB1 -l Edge.Cuts,F.Fab,F.Cu $<
+	kicad-cli pcb export pdf -o Doc/tmp.pdf --theme PdfPCB1 -l Edge.Cuts,F.Fab $<
 	podofocrop Doc/tmp.pdf $@
 	rm Doc/tmp.pdf
 
