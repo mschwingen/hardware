@@ -1,0 +1,15 @@
+[Unit]
+After=network.target
+After=gpib-ifc.service
+After=lcdproc.service
+
+[Service]
+Type=exec
+User=gpib
+ExecStart=perl /home/gpib/scripts/motor-tcp-server.pl
+
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

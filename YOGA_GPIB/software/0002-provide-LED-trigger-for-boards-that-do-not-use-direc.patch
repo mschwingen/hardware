@@ -1,0 +1,57 @@
+From 9b86efee9a7a3908f0d1e9a6ea8415e9ee9dea9d Mon Sep 17 00:00:00 2001
+From: Michael Schwingen <michael@schwingen.org>
+Date: Fri, 10 Jan 2025 11:51:39 +0100
+Subject: [PATCH 2/2] provide LED trigger for boards that do not use direct LED
+ access like YOGA
+
+---
+ linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c b/linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c
+index a444b645..31191251 100644
+--- a/linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c
++++ b/linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c
+@@ -97,6 +97,8 @@
+ #include <linux/gpio/machine.h>
+ #include <linux/gpio.h>
+ #include <linux/irq.h>
++#include <linux/leds.h>
++
+ 
+ static int sn7516x_used=1, sn7516x;
+ module_param(sn7516x_used,int,0660);
+@@ -166,8 +168,9 @@ typedef enum {
+ #define SN7516X_PINS 4
+ #define NUM_PINS (GPIB_PINS + SN7516X_PINS)
+ 
+-#define ACT_LED_ON  if (ACT_LED) gpiod_direction_output(ACT_LED, 1)
+-#define ACT_LED_OFF if (ACT_LED) gpiod_direction_output(ACT_LED, 0)
++DEFINE_LED_TRIGGER(ledtrig_gpib);
++#define ACT_LED_ON  if (ACT_LED) gpiod_direction_output(ACT_LED, 1); else led_trigger_event(ledtrig_gpib, LED_FULL)
++#define ACT_LED_OFF if (ACT_LED) gpiod_direction_output(ACT_LED, 0); else led_trigger_event(ledtrig_gpib, LED_OFF)
+ 
+ struct gpio_desc * all_descriptors[GPIB_PINS+SN7516X_PINS];
+ 
+@@ -1095,6 +1098,9 @@ static int allocate_gpios(gpib_board_t *board) {
+ 		release_gpios();
+                 return -1;
+         }
++	// Initialize LED trigger
++        led_trigger_register_simple("gpib", &ledtrig_gpib);
++
+         return 0;
+ }
+ 
+@@ -1105,6 +1111,8 @@ static void bb_detach(gpib_board_t *board)
+ 	dbg_printk(2, "Enter with data %p\n", board->private_data);
+ 	if (board->private_data == NULL) return;
+ 
++	led_trigger_unregister_simple(ledtrig_gpib);
++
+ 	bb_free_irq(board, &priv->irq_DAV, NAME "_DAV");
+         bb_free_irq(board, &priv->irq_NRFD, NAME "_NRFD");
+         bb_free_irq(board, &priv->irq_NDAC, NAME "_NDAC");
+-- 
+2.39.5
+

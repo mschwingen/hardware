@@ -1,0 +1,25 @@
+From d1a5baec6765ddf7fad5fcc122853dd08be1094f Mon Sep 17 00:00:00 2001
+From: Michael Schwingen <michael@schwingen.org>
+Date: Fri, 10 Jan 2025 11:42:04 +0100
+Subject: [PATCH 1/2] YOGA: do not access GPIO4 (LED) since is is already
+ allocated by the kernel LED subsystem
+
+---
+ linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c b/linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c
+index 2110b948..a444b645 100644
+--- a/linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c
++++ b/linux-gpib-kernel/drivers/gpib/gpio/gpib_bitbang.c
+@@ -1164,6 +1164,7 @@ static int bb_attach(gpib_board_t *board, const gpib_board_config_t *config)
+                 gpios_vector[&(D06) - &(all_descriptors[0])] = YOGA_D06_pin_nr;
+                 gpios_vector[&(PE)  - &(all_descriptors[0])] = -1;
+                 gpios_vector[&(DC)  - &(all_descriptors[0])] = -1;
++                gpios_vector[&(ACT_LED) - &(all_descriptors[0])] = -1;
+         } else {
+                 dbg_printk (0, "Unrecognized pin mapping.\n");
+                 goto bb_attach_fail;
+-- 
+2.39.5
+

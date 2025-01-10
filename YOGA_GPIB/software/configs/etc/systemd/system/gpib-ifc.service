@@ -1,0 +1,14 @@
+[Unit]
+Description=GPIB interface
+After=nss-lookup.target basic.target
+
+[Service]
+Type=exec
+Restart=on-failure
+RestartSec=10
+User=0
+UMask=0000
+ExecStart=/home/gpib/scripts/gpib-start.sh
+
+[Install]
+WantedBy=multi-user.target

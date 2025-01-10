@@ -1,0 +1,15 @@
+[Unit]
+Description=LCD: show IP address
+After=lcdproc.service
+After=network.target
+
+[Service]
+Type=exec
+Restart=always
+RestartSec=10
+User=gpib
+UMask=0000
+ExecStart=/home/gpib/scripts/lcd_status_ip.pl
+
+[Install]
+WantedBy=multi-user.target
