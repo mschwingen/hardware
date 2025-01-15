@@ -51,7 +51,7 @@ changes.
 
 * Set boot options to switch to software I2C (the hardware I2C block in the
   Raspberry Pi has a bug that leads to bus hangs if a device needs clock
-  stretching) (as root)
+  stretching), [See this forum post for details](https://github.com/raspberrypi/linux/issues/4884) (as root)
 
         raspi-config nonint do_i2c 0
 		sed -i -e 's@dtparam=i2c_arm=on@dtparam=i2c_arm=off@' /boot/firmware/config.txt
