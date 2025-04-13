@@ -11,3 +11,5 @@
 [JTAG Hat for Raspberry Pi](JTAG_hat/)
 
 [YOGA GPIB adapter for Raspberry Pi](YOGA_GPIB/)
+
+[USB PD Sniffer](USB-PD-Sniffer/)
